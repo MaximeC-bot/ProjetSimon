@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">simon</string>
+    <string name="nouvelle_partie">Nouvelle partie</string>
+    <string name="facile">Facile</string>
+    <string name="chrono">Chrono</string>
+    <string name="difficile">Difficile</string>
+    <string name="expert">Expert</string>
+
+    <string name="score">Score : </string>
+    <string name="start"> START !</string>
+    <string name="round">Round : </string>
+    <string name="life">Life : </string>
+    <string name="level">Level : </string>
+    <string name="couleur">Couleur :</string>
+</resources>
