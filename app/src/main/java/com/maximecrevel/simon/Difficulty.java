@@ -14,23 +14,12 @@ public class Difficulty extends AppCompatActivity {
         setContentView(R.layout.difficulty);
         super.onCreate(savedInstanceState);
 
-      /*  //get next view  for game
-        final Intent startGame = new Intent(this, Game.class);
-
-        //Change view on click facile
-        Button facile = findViewById(R.id.facile);
-        facile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(startGame);
-            }
-        });*/
-        //get next view  for game
+        //Stats du mode facile
         final Intent startGame1 = new Intent(this, GameCircle.class);
         startGame1.putExtra("nb_bloc_start",1);
-        startGame1.putExtra("nb_bloc_4_win",7);
+        startGame1.putExtra("nb_bloc_4_win",10);
         startGame1.putExtra("poids_du_mode",(double) 1);
-        //Change view on click difficile
+        //Ecran du mode facile
         Button facile = findViewById(R.id.facile);
         facile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,13 +31,13 @@ public class Difficulty extends AppCompatActivity {
 
 
 
-        //get next view  for game
+        //Stats du mode difficile
         final Intent startGame2 = new Intent(this, GameCircle.class);
         startGame2.putExtra("nb_bloc_start",3);
-        startGame2.putExtra("nb_bloc_4_win",10);
+        startGame2.putExtra("nb_bloc_4_win",15);
         startGame2.putExtra("poids_du_mode", 1.5);
 
-        //Change view on click difficile
+        //Ecran du mode difficile
         Button difficile = findViewById(R.id.difficile);
         difficile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,13 +47,14 @@ public class Difficulty extends AppCompatActivity {
         });
 
 
-        //get next view  for game
+        //Stats du mode expert
         final Intent startGame3 = new Intent(this, GameCircle.class);
-        startGame3.putExtra("nb_bloc_start",4);
-        startGame3.putExtra("nb_bloc_4_win",12);
-        startGame3.putExtra("poids_du_mode",(double) 2);
+        startGame3.putExtra("nb_bloc_start",5);
+        startGame3.putExtra("nb_bloc_4_win",20);
+        startGame3.putExtra("default_life",3);
+        startGame3.putExtra("poids_du_mode",(double) 3);
 
-        //Change view on click expert
+        //Ecran du mode expert
         Button expert = findViewById(R.id.expert);
         expert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,15 +65,15 @@ public class Difficulty extends AppCompatActivity {
 
 
 
-        //get next view  for game
+        //Stats du mode chrono + activation du chrono
         final Intent startGame4 = new Intent(this, GameCircle.class);
         startGame4.putExtra("nb_bloc_start",1);
-        startGame4.putExtra("nb_bloc_4_win",8);
+        startGame4.putExtra("nb_bloc_4_win",20);
         startGame4.putExtra("default_life",3);
-        startGame4.putExtra("poids_du_mode", 1.5);
+        startGame4.putExtra("poids_du_mode", 2.0);
         startGame4.putExtra("chrono",true);
 
-        //Change view on click chrono
+        //Ecran du mode chrono
         Button chrono = findViewById(R.id.chrono);
         chrono.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -19,7 +19,6 @@ import java.util.concurrent.TimeUnit;
 
 public class GameCircle extends AppCompatActivity {
 
-    //Need config
     private int nb_bloc_start;
     private int nb_bloc_4_win;
     private int default_life;
@@ -27,10 +26,6 @@ public class GameCircle extends AppCompatActivity {
     private double score;
     private boolean chrono;
     private int lvl;
-
-
-
-
 
     //@Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,6 +36,7 @@ public class GameCircle extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
+            // On affecte nos variables
             nb_bloc_start = extras.getInt("nb_bloc_start");
             nb_bloc_4_win = extras.getInt("nb_bloc_4_win");
             default_life = extras.getInt("default_life",2);
@@ -51,16 +47,17 @@ public class GameCircle extends AppCompatActivity {
         }
 
         if(chrono)
-            findViewById(R.id.timer).setVisibility(View.VISIBLE);
+            findViewById(R.id.timer).setVisibility(View.VISIBLE); //rend le chrono visible
 
         numButton = lvl + 3;
 
+        //Liste des couleurs pour les boutons
         final int[] arrayColor = {Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW,Color.CYAN,Color.MAGENTA,Color.rgb(255,102,204),Color.rgb(102,51,51),Color.rgb(51,51,0),Color.rgb(102,153,153)};
         List<Button> buttons = new ArrayList<>();
 
         final FrameLayout main = findViewById(R.id.main);
 
-
+        // Gérer l'affichage selon la taille de l'écran
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
@@ -76,42 +73,38 @@ public class GameCircle extends AppCompatActivity {
 
         for(int i = 0; i < numButton; i++)
         {
-            /* Create some quick TextViews that can be placed. */
+            /* Permet de créer des Textviews pour les placer */
             Button button = new Button(this);
             buttons.add(button);
 
-            // Set a text and center it in each view.
+            // Permet de centrer le texte
             button.setText(getString(R.string.couleur)+ i);
             button.setGravity(Gravity.CENTER);
             button.setBackgroundColor(arrayColor[i]);
 
-            // Force the views to a nice size (150x100 px) that fits my display.
-            // This should of course be done in a display size independent way.
+            // Permet de standardiser la taille d'affichage
             FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams((int)(size*0.30),(int) (size*0.15));
 
-            // Place all views in the center of the layout. We'll transform them
-            // away from there in the code below.
+            // Permet de centrer l'affichage
             lp.gravity = Gravity.CENTER;
 
-            // Set layout params on view.
+            // Définit la mise en page
             button.setLayoutParams(lp);
 
-            // Calculate the angle of the current view. Adjust by 90 degrees to
-            // get View 0 at the top. We need the angle in degrees and radians.
+            // Permet de calculer les angles pour positionner le jeu
             float angleDeg = i * 360.0f / numButton - 90.0f;
             float angleRad = (float)(angleDeg * Math.PI / 180.0f);
 
-            // Calculate the position of the view, offset from center (300 px from
-            // center). Again, this should be done in a display size independent way.
+            // Force le positionnement du jeu à partir des angles calculés
             button.setTranslationX((int)(size*0.3 * (float)Math.cos(angleRad)));
             button.setTranslationY((int)(size*0.3   * (float)Math.sin(angleRad)));
 
-            // Set the rotation of the view.
+            // Rotation
             button.setRotation(angleDeg + 90.0f);
             main.addView(button);
         }
 
-        //Get some shit on layout
+        //Affichage des infos en cours de partie
         TextView lbl_score = findViewById(R.id.lbl_score);
         TextView lbl_life = findViewById(R.id.lbl_life);
         Button btn_start = findViewById(R.id.btn_start);
@@ -122,12 +115,12 @@ public class GameCircle extends AppCompatActivity {
         lbl_lvl.setText(getString(R.string.level) + lvl);
 
         Log.e("score", String.valueOf(score));
-        //Setup class
+
         final GameLib game = new GameLib(nb_bloc_start,nb_bloc_4_win, default_life, poids_du_mode, buttons, arrayColor, lvl, lbl_score, lbl_life, btn_start,  lbl_round,score,chrono,lbl_timer);
 
 
 
-        //quantique
+        // Prévenir timeouts
         Thread thread = new Thread(){
             public void run(){
                 do {
@@ -139,13 +132,14 @@ public class GameCircle extends AppCompatActivity {
                 }while(!game.getEnd() );
 
                 if(game.getWin()){
-                    //get next view  for game
+                    //En cas de victoire passer au niveau suivant
                     final Intent startGame = getIntent();
                     startGame.putExtra("lvl",lvl+1);
                     startGame.putExtra("score", game.getScore());
                     startActivityForResult(startGame,lvl+1);
                     Log.i("scorend", String.valueOf(game.getScore()));
                 }else{
+                    // Quitter la partie
                     Intent intent = new Intent();
                     intent.putExtra("exit", true);
                     setResult(RESULT_OK, intent);
@@ -177,6 +171,7 @@ public class GameCircle extends AppCompatActivity {
         }
     }
 
+    // Sortir du jeu
     @Override
     public void onBackPressed() {
         Intent intent = new Intent();

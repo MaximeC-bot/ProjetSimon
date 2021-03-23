@@ -13,10 +13,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //get next view  for Difficulty choose
+        //choix de la difficulté
         final Intent startGame = new Intent(this, Difficulty.class);
 
-        //Change view on click start
+        //Cliquer sur start pour démarrer le jeu
         final Button start = findViewById(R.id.start);
         start.setOnClickListener(new View.OnClickListener() {
             @Override

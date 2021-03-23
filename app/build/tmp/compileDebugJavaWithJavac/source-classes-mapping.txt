@@ -1,3 +1,8 @@
+com/maximecrevel/simon/BuildConfig.java
+ com.maximecrevel.simon.BuildConfig
+com/maximecrevel/simon/GameCircle.java
+ com.maximecrevel.simon.GameCircle
+ com.maximecrevel.simon.GameCircle$1
 com/maximecrevel/simon/GameLib.java
  com.maximecrevel.simon.GameLib
  com.maximecrevel.simon.GameLib$1
@@ -28,8 +33,3 @@ com/maximecrevel/simon/Difficulty.java
  com.maximecrevel.simon.Difficulty$2
  com.maximecrevel.simon.Difficulty$3
  com.maximecrevel.simon.Difficulty$4
-com/maximecrevel/simon/GameCircle.java
- com.maximecrevel.simon.GameCircle
- com.maximecrevel.simon.GameCircle$1
-com/maximecrevel/simon/BuildConfig.java
- com.maximecrevel.simon.BuildConfig
